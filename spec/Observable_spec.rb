@@ -28,4 +28,12 @@ describe "Observable" do
     @fired.should == false
   end
 
+  it "returns a tag with when that can be used to remove listener" do
+    @fired = false
+    x = @o.when(:event) do
+      @fired = true
+    end
+    @o.remove_listener(x)
+  end
+
 end
