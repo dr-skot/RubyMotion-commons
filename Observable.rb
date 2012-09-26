@@ -28,16 +28,16 @@ module Observable
   def when(notification, &block)
     tag = new_tag
     callbacks(notification)[tag] = block
-    notifications_for_tag[tag] = notification
+    notification_for_tag[tag] = notification
   end
 
   def remove_listener(tag)
-    notification = notifications_for_tag[tag]
+    notification = notification_for_tag[tag]
     callbacks(notification).delete(tag) if notification
   end
 
-  def notifications_for_tag
-    @notifications_for_tag ||= {}
+  def notification_for_tag
+    @notification_for_tag ||= {}
   end
   
   def callbacks(notification)
