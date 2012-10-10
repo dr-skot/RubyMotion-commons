@@ -14,14 +14,12 @@ module Observable
     observers.each {|o| o.notify(self, notification)}
     callbacks(notification).each_value { |block| block.call }
   end
+  alias_method :fire, :notify_observers
 
   def observers
     @observers ||= []
   end
 
-  def fire(notification)
-    notify_observers(notification)
-  end
 
   # when pattern
 
